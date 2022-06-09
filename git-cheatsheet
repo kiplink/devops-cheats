@@ -31,7 +31,7 @@ git push
 
 git push origin main
 
-# gush ke branch lain
+# push ke branch lain
 
 git push origin main:develop
 
@@ -50,6 +50,11 @@ git branch -m <new branch>
 # pindah branch
 
 git checkout develop
+
+# merge branch
+
+- masuk ke branch yang akan melakukan merge
+  git merge <nama branch>
 
 # clone
 
