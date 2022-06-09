@@ -26,3 +26,31 @@ git remote git-url origin
 # push ke repository
 
 git push
+
+# push ke branch
+
+git push origin main
+
+# gush ke branch lain
+
+git push origin main:develop
+
+# hapus branch di repository
+
+git push --delete origin develop
+
+# melihat current branch
+
+git branch --show-current
+
+# rename branch
+
+git branch -m <new branch>
+
+# pindah branch
+
+git checkout develop
+
+# clone
+
+git clone <url repository>
