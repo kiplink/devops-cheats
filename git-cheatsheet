@@ -1,0 +1,8 @@
+git init
+git branch
+
+git add <some file>
+
+git status
+
+
