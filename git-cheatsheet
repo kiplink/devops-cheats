@@ -1,8 +1,24 @@
+# inisiasi git
+
 git init
 git branch
 
+# mendaftarkan file yang akan di upload
+
 git add <some file>
+
+# check file registered
 
 git status
 
+# menambahkan remote repository
 
+git remote add origin git@github.com:kiplink/devops-cheats.git
+
+# melihat remore repository
+
+git remote
+
+# melihat url remote repo
+
+git remote git-url origin

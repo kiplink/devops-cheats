@@ -1,0 +1,19 @@
+# list images
+docker images
+
+# menjalankan container
+docker run -d --name <some name> [OPTIONS] <some image>
+
+OPTIONS:
+    -p <external port>:<internal port>
+    -e <some environment>
+    -v <local path>:<container path>
+
+example:
+docker run -d --name postgresql -p 5433:5432 -e POSTGRES_PASSWORD=Passw0rd -v /home/kiplink/volumes/postgre:/var/lib/postgresql/data postgres
+
+# list container yang running
+docker ps
+
+# list semua container
+docker ps -a
