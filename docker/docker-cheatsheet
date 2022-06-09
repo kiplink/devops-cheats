@@ -17,3 +17,24 @@ docker ps
 
 # list semua container
 docker ps -a
+
+# logs container
+docker logs <nama/ID container>
+
+# melihat detail container
+docker inspect <nama/ID container>
+
+# build image docker
+docker build -t <username>/<image name>:<version> -f <specify a Dockerfile>
+
+example:
+docker build -t kiplink/ubuntu:1.0 -f Dockerfile
+
+# push/publish image to docker hub
+docker push kiplink/ubuntu:1.0
+
+# create docker network
+docker network create -d bridge local-network
+
+# list docker network
+docker network ls
