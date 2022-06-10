@@ -6,12 +6,12 @@ docker images
 
 # menjalankan container
 
-docker run -d --name <some name> [OPTIONS] <some image>
+docker run -d --name (some name) [OPTIONS] (some image)
 
 OPTIONS:
--p <external port>:<internal port>
--e <some environment>
--v <local path>:<container path>
+-p (external port):(internal port)
+-e (some environment)
+-v (local path):(container path)
 
 example:
 docker run -d --name postgresql -p 5433:5432 -e POSTGRES_PASSWORD=Passw0rd -v /home/kiplink/volumes/postgre:/var/lib/postgresql/data postgres
@@ -26,19 +26,19 @@ docker ps -a
 
 # masuk kedalam container
 
-docker exec -it <nama/id container> <bash/sh>
+docker exec -it (nama/id container) <bash/sh>
 
 # logs container
 
-docker logs <nama/ID container>
+docker logs (nama/ID container)
 
 # melihat detail container
 
-docker inspect <nama/ID container>
+docker inspect (nama/ID container)
 
 # build image docker
 
-docker build -t <username>/<image name>:<version> -f <specify a Dockerfile>
+docker build -t (username)/(image name):(version) -f (specify a Dockerfile)
 
 example:
 docker build -t kiplink/ubuntu:1.0 -f Dockerfile
@@ -78,7 +78,7 @@ docker-compose start
 
 # masuk ke dalam container
 
-docker-compose exec <nama container> <bash/sh>
+docker-compose exec (nama container) (bash/sh)
 
 # stop and remove container
 
