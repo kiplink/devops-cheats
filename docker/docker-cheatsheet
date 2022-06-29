@@ -12,6 +12,16 @@ OPTIONS:
 example:
 docker run -d --name postgresql -p 5433:5432 -e POSTGRES_PASSWORD=Passw0rd -v /home/kiplink/volumes/postgre:/var/lib/postgresql/data postgres
 
+# minio s3
+docker run \
+  -p 9000:9000 \
+  -p 9001:9001 \
+  --name minio1 \
+  -v ~/minio/data:/data \
+  -e "MINIO_ROOT_USER=AKIAIOSFODNN7EXAMPLE" \
+  -e "MINIO_ROOT_PASSWORD=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY" \
+  quay.io/minio/minio server /data --console-address ":9001"
+  
 # list container yang running
 docker ps
 
