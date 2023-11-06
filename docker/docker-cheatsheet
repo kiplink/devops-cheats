@@ -10,8 +10,14 @@ OPTIONS:
     -v <local path>:<container path>
 
 example:
-docker run -d --name postgresql -p 5432:5432 -e POSTGRES_PASSWORD=Passw0rd -e POSTGRES_USERNAME=username -v /home/kiplink/volumes/postgre:/var/lib/postgresql/data postgres
-docker run -d --name mongodb -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME= -e MONGO_INITDB_ROOT_PASSWORD= -v /root/app/volume/mongodb:/data/db mongo
+docker run -d --name postgresql -p 5432:5432 -e POSTGRES_PASSWORD=Passw0rd -e POSTGRES_USERNAME=username -v <your volume>:/var/lib/postgresql/data postgres
+docker run -d --name mongodb -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME= -e MONGO_INITDB_ROOT_PASSWORD= -v <your volume>:/data/db mongo
+
+# scylla
+docker run --name scylla -v <your volume>:/var/lib/scylla -d -p 9042:9042 -p 9142:9142 -p 7000:7000 -p 7001:7001 -p 7199:7199 -p 10000:10000 -p 9180:9180 -p 9100:9100 -p 9160:9160 -p 19042:19042 -p 19142:19142 scylladb/scylla
+
+# cassandra
+docker run --name cassandra -v <your volume>:/var/lib/cassandra -p 7001:7001 -p 7000:7000 -p 7199:7199 -p 9042:9042 -p 9160:9160 -d cassandra:latest
 
 # minio s3
 docker run \
@@ -31,3 +37,9 @@ docker ps -a
 
 # portainer monitoring docker stand alone
 docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v volder_volume:/data portainer/portainer-ce:latest
+docker run -d --restart=always -p 8081:3001 -v <your volume>:/app/data --name uptime-kuma louislam/uptime-kuma:1
+
+
+
+# broadcast
+ docker run -v <your volume>:/app/data -p 8080:8080 -p 1935:1935 -it owncast/owncast:latest
