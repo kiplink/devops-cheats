@@ -13,6 +13,9 @@ example:
 docker run -d --name postgresql -p 5432:5432 -e POSTGRES_PASSWORD=Passw0rd -e POSTGRES_USERNAME=username -v <your volume>:/var/lib/postgresql/data postgres
 docker run -d --name mongodb -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME= -e MONGO_INITDB_ROOT_PASSWORD= -v <your volume>:/data/db mongo
 
+# redis
+sudo docker run -p 6379:6379 -v /root/app/volume/redis:/data --name redis -d redis:3.2 redis-server --appendonly yes  --requirepass "examplepassword"
+
 # scylla
 docker run --name scylla -v <your volume>:/var/lib/scylla -d -p 9042:9042 -p 9142:9142 -p 7000:7000 -p 7001:7001 -p 7199:7199 -p 10000:10000 -p 9180:9180 -p 9100:9100 -p 9160:9160 -p 19042:19042 -p 19142:19142 scylladb/scylla
 
