@@ -22,6 +22,18 @@ docker run --name scylla -v <your volume>:/var/lib/scylla -d -p 9042:9042 -p 914
 # cassandra
 docker run --name cassandra -v <your volume>:/var/lib/cassandra -p 7001:7001 -p 7000:7000 -p 7199:7199 -p 9042:9042 -p 9160:9160 -d cassandra:latest
 
+# postgres vector
+docker run -d \
+  --name pgvector_db \
+  -e POSTGRES_USER=myuser \
+  -e POSTGRES_PASSWORD=mysecretpassword \
+  -e POSTGRES_DB=mydatabase \
+  -v pgvector_data:/var/lib/postgresql/data \
+  -p 5432:5432 \
+  pgvector/pgvector:pg15
+
+sql command : CREATE EXTENSION vector;
+
 # minio s3
 docker run \
   -p 9000:9000 \
