@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  metabase:
+    image: metabase/metabase
+    ports:
+      - '4000:3000'
+    # environment:
+    #   - MB_DB_TYPE=postgres
+    #   - MB_DB_DBNAME=oss_rba
+    #   - MB_DB_PORT=5432
+    #   - MB_DB_USER=TDB_YB4185
+    #   - MB_DB_PASS=b@drus#2!
+    #   - MB_DB_HOST=10.2.238.22
+    container_name: metabase
