@@ -1,0 +1,60 @@
+version: '3'
+services:
+  postgresql-master:
+    image: bitnami/postgresql
+    restart: always
+    ports:
+      - '5432:5432'
+    volumes:
+      - /Users/badrusshoolehk/Documents/riset/docker/postgres-replica/volume/master:/bitnami/postgresql
+      - ./db.sql:/docker-entrypoint-initdb.d/db.sql
+    environment:
+      - POSTGRESQL_PGAUDIT_LOG=READ,WRITE
+      - POSTGRESQL_LOG_HOSTNAME=true
+      - POSTGRESQL_REPLICATION_MODE=master
+      - POSTGRESQL_REPLICATION_USER=repl_user
+      - POSTGRESQL_REPLICATION_PASSWORD=repl_user
+      - POSTGRESQL_USERNAME=postgres
+      - POSTGRESQL_PASSWORD=postgres
+      - POSTGRESQL_DATABASE=development_database
+      - ALLOW_EMPTY_PASSWORD=yes
+    networks:
+      - database
+
+  postgresql-slave:
+    image: bitnami/postgresql
+    restart: always
+    ports:
+      - '5433:5432'
+    depends_on:
+      - postgresql-master
+    environment:
+      - POSTGRESQL_PASSWORD=postgres
+      - POSTGRESQL_MASTER_HOST=postgresql-master
+      - POSTGRESQL_PGAUDIT_LOG=READ
+      - POSTGRESQL_LOG_HOSTNAME=true
+      - POSTGRESQL_REPLICATION_MODE=slave
+      - POSTGRESQL_REPLICATION_USER=repl_user
+      - POSTGRESQL_REPLICATION_PASSWORD=repl_user
+      - POSTGRESQL_MASTER_PORT_NUMBER=5432
+      - ALLOW_EMPTY_PASSWORD=yes
+    networks:
+      - database
+
+  metabase:
+    image: metabase/metabase
+    ports:
+      - '3000:3000'
+    environment:
+      - MB_DB_TYPE=postgres
+      - MB_DB_DBNAME=development_database
+      - MB_DB_PORT=5432
+      - MB_DB_USER=postgres
+      - MB_DB_PASS=postgres
+      - MB_DB_HOST=localhost
+    container_name: metabase
+    networks:
+      - database
+networks:
+  database:
+    driver: bridge
